@@ -93,3 +93,8 @@ Note: Hard recall 0% on every insertion; insertions cost precision. ~131 attempt
 | 86 | top dog | r7_q4h14max | 66.1 |
 | 87 | lucky seven | r8_q4y1_73 | 66.1 |
 | 88 | hail mary | q4 max 0.995*hard_v9 (CrackiT, Sami-approved) | 49.9, Hard 0% |
+| 89 | jaffa cake | w1 | 66.1 |
+| 90 | last orders | q4 max 0.991*hard_v4 (CrackiT) | 55.3 |
+| 91 | custard cream | w2 | 66.0 |
+| 92 | bourbon | w3 | 66.0 |
+| 93 | hobnob | w4 | 66.1 |
