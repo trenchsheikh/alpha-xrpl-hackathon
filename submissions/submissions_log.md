@@ -55,3 +55,118 @@ Note: g_scenlink-prop rejected as duplicate of coffee run #3 (not submitted).
 | 49 | q4 (0.4 S+0.1 e_scenlink2+0.5 k2) | fish and chips | 66.1 BEST |
 | 50 | p1_oofblend (XRPL max-of-ranks agg/hub/medium) | lemon drizzle | 64.3 |
 | 51 | r1 (p1 + prop) | spicy noodles | 64.5 |
+| 52 | mango lassi | r2_blend max-rank S,K2 | 65.9 |
+| 53 | blue moon | s1 | 64.4 |
+| 54 | tiny hat | s2 | 63.0 |
+| 55 | secret sauce | h09 hard probe | 59.8 |
+| 56 | big cheese | h14 max(rank, hardmodel) on n1 | 66.1 (Med 10%) |
+| 57 | jelly bean | h11 | 60.7 |
+| 58 | hot potato | h12 | 60.4 |
+| 59 | wiggle room | h13 | 60.0 |
+| 60 | wobbly table | s3 | 60.5 |
+| 61 | lost sock | s4 | 64.6 |
+| 62 | paper plane | s5 | 63.3 |
+| 63 | rainy day | s6 | 64.4 |
+| 64 | lucky dip | s7 | 63.1 |
+| 65 | night owl | s8 | 63.1 |
+| 66 | coin flip | h02 | 60.1 |
+| 67 | merry-go-round | h08 | 60.7 |
+Note: Hard recall 0% on every insertion; insertions cost precision. ~131 attempts left.
+| 68 | duck soup | x1_experts | 66.0 |
+| 69 | jam sandwich | x2_experts | 65.8 |
+| 70 | party hat | x3_experts | 50.2 |
+| 71 | toast soldiers | y1 rank avg h14+x1 | 66.1 |
+| 72 | long shot | z1 hard model only (diagnostic) | 3.9, Hard 0% |
+| 73 | cup of tea | x4_medonly | 66.0 |
+| 74 | wild card | z2 medium model only (diagnostic) | 7.3, Med 10% |
+| 75 | golden hour | t1 geo-mean top5 | 66.0 |
+| 76 | slow cooker | t2 min-rank top5 | stuck processing |
+| 77 | middle child | t3 median top5 | 66.0 |
+| 78 | grumpy cat | r2_consmin | 66.0 |
+| 79 | group hug | r1_consensus | 66.0 |
+| 80 | sleepy panda | r5_harm | 66.1 |
+| 81 | big breakfast | r4_q4heavy | 66.1 |
+| 82 | window seat | u1 q4+mv-windows | 65.9 |
+| 83 | middle lane | u2 q4+medium-link | 65.9 |
+| 84 | three amigos | u3 q4+avg3prop | 66.0 |
+| 85 | fizzy pop | r6_q4y1 | 66.1 |
+| 86 | top dog | r7_q4h14max | 66.1 |
+| 87 | lucky seven | r8_q4y1_73 | 66.1 |
+| 88 | hail mary | q4 max 0.995*hard_v9 (CrackiT, Sami-approved) | 49.9, Hard 0% |
+| 89 | jaffa cake | w1 | 66.1 |
+| 90 | last orders | q4 max 0.991*hard_v4 (CrackiT) | 55.3 |
+| 91 | custard cream | w2 | 66.0 |
+| 92 | bourbon | w3 | 66.0 |
+| 93 | hobnob | w4 | 66.1 |
+| 94 | digestive | w5 | 66.1 |
+| 95 | rich tea | w6 | 65.9 |
+| 96 | ginger nut | w7 | 66.0 |
+| 97 | shortbread | w8 | 66.0 |
+| 98 | fig roll | w9 | 66.0 |
+| 99 | wafer | w10 | 66.1 |
+| 100 | crumpet | v1 | 66.0 |
+| 101 | scone | v2 | 66.0 |
+| 102 | teacake | v3 | 66.1 |
+| 103 | flapjack | v4 | 66.0 |
+| 104 | cold feet | q4-2sd disagreement penalty | 65.6 |
+| 105 | second opinion | mean-1sd | 65.7 |
+| 106 | fence sitter | q4-1sd | 65.9 |
+| 107 | maybe later | q4-0.5sd | 66.0 |
+| 108 | eccles cake | v5 | 66.1 |
+| 109 | bakewell | v6 | 66.0 |
+| 110 | wild guess | q4+0.5sd | 65.9 |
+| 111 | loose cannon | q4+1sd | 60.2 |
+| 112 | maverick | q4+2sd | 22.5 |
+| 113 | high five | 0.7q4+0.3max | 66.1 |
+| 114 | mirror mirror | pl_300_05 (pseudo-label self-train) | 61.4 |
+| 115 | echo chamber | pl_300_03 | 63.7 |
+| 116 | bootstraps | pl_500_03 | 65.4 |
+| 117 | self help | pl_200_03 | 63.7 |
+
+Runs 114-117: all prec 93-94%, top1% recall Easy 50% / Med,Hard,Amb 0%, AUC .90-.91. Pseudo-label self-training hurt vs q4 (66.1). 81 attempts left.
+| 118 | group hug | /workspace/crackit/rank_q4top2_best.csv (CrackiT cluster-consistency on q4) | 65.8 |
+| 119 | social butterfly | h_graph-inject40 (q4 order + top 40 of LightGBM base+graph-features (lkgraph/) outside q4 top 401, inserted at q4 rank 200) | 66.2 |
+| 120 | chatterbox | h_graph-rankavg (0.5 q4 rank + 0.5 graph-model rank) | 64.0 |
+
+Run 119: prec 95%, top1% recall Easy 50% / Med 10% / Hard 0% / Amb 0%. **New best 66.2** (q4 = 66.1). Run 118 CrackiT cluster-consistency 65.8. 80 attempts left.
+Run 120: prec 93%, top1% E50 M10. Full rank-avg with graph model hurts on test (64.0); small injections preferred.
+| 121 | triple decker | h_graph3s-inject40 | 66.3 |
+| 122 | party bus | h_graph-inject60 | 66.0 |
+| 123 | late bloomer | h_graph-inject40r300 | 66.2 |
+| 124 | dark horse | crackit nov_inj40 | 64.4 |
+| 125 | conga line | h_graph-inject80 | 65.8 |
+| 126 | front row | h_graph-inject40r100 | 66.0 |
+| 127 | hail mary | crackit big_m18b40 | 62.9 |
+| 128 | needle hunt | i_hardnb-inject20 | 64.5 |
+| 129 | best of both | k_union | 66.3 |
+| 130 | lucky dip | j_cohort-inject20 | 64.5 |
+| 131 | pizza party | m_all300 | 66.1 |
+| 132 | pillow fight | m_all200 | 65.7 |
+| 133 | tea break (unnamed) | m_15r150 | 66.0 |
+| 134 | wild card (unnamed) | r_rand20 (20 random rows at rank 380) | 65.5 |
+
+Runs 121-134: prec / top1% E/M/H/A — 121 95% 50/0/0/0; 122 94% 50/10/0/0; 123 95% 50/10/0/0; 124 90% 40/0/0/0; 125 93% 50/10/0/0; 126 95% 50/10/0/0; 127 86% 40/0/0/0; 128 91% 40/0/0/0; 129 95% 50/0/0/0; 130 91% 40/0/0/0; 131 93% 50/10/0/0; 132 93% 50/10/0/0; 133 94% 50/10/0/0; 134 91% 40/0/0/0. **New best 66.3** (runs 121, 129). ~64 attempts left.
+| 135 | night owl | s_relay40 (top 40 relay_match6h rows inserted at rank 300 of h_graph3s-inject40) | 64.2 |
+| 136 | deep clean | t_deep_ra (top401 of h_graph3s-inject40, rest by h_graph-rankavg) | 65.1 |
+| 137 | spring clean | t_deep_q4 (top401 of h_graph3s-inject40, rest by q4) | 66.3 |
+| 138 | photo finish | f_lb1 (consensus-reordered top401 from leaderboard mapping) | 62.3 |
+| 139 | final whistle | f_lb3 (top401 of h_graph3s-inject40, rest by mean rank of runs >=66.0) | 66.3 |
+| 140 | last orders (may show as Run) | g_deep1 (top401 h_graph3s, rest by h_graph-inject40) | 66.3 |
+| 141 | closing time | g_deep2 (top401 h_graph3s, rest by m_all300) | 66.2 |
+| 142 | second wind | n_med1 (top401 from h_graph-inject40, rest by q4) | 66.2 |
+| 143 | comeback kid | n_med2 (top401 from h_graph-inject40r300, rest by q4) | 66.2 |
+
+Runs 135-143: prec / top1% E/M/H/A — 135 87% 40/0/0/0; 136 95% 50/0/0/0; 137 95% 50/0/0/0; 138 95% 50/0/0/0; 139 95% 50/0/0/0; 140 95% 50/0/0/0; 141 95% 50/0/0/0; 142 95% 50/10/0/0; 143 95% 50/10/0/0. Best remains 66.3. ~55 attempts left.
+| 144 | buzzer beater | h_graph-inject30 | 66.2 |
+| 145 | extra time | o_inj40 (5-seed combined LightGBM on motif+graph+cohort+medium-windows, top 40 inserted at rank 200 of h_graph3s-inject40) | 66.1 |
+| 146 | penalty shootout | o_tail (top 401 of h_graph3s-inject40, rest by combined model) | 63.5 |
+| 147 | long shot | p_relay20 (relay-family two-stage Hard probe, 20 rows at rank 380) | 65.3 |
+
+Runs 144-147: prec / top1% E/M/H/A — 144 94% 50/0/0/0; 145 94% 50/10/0/0; 146 95% 50/0/0/0; 147 91% 40/0/0/0. Best still 66.3. 52 attempts left.
+| 148 | musical chairs | e1_swap10 | 66.3 |
+| 149 | high five | e3_graph5s (5-seed graph model, top 40 injected at rank 200 of q4) | 66.3 |
+| 150 | half century | e5_inj50 | 66.2 |
+| 151 | early bird | e4_inj40r150 | 66.3 |
+| 152 | top shelf | e2_top100lock | 66.3 |
+
+Runs 148-152: 148 P95% 50/0/0/0; 149 50/10/0/0 (best so far that keeps Medium; new base). Best still 66.3. 47 attempts left.
