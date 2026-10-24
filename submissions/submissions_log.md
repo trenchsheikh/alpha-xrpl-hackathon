@@ -184,3 +184,10 @@ Runs 153-157: Med top1% — 153 10; 154 10; 155 0; 156 0; 157 10. Everything stu
 | 162 | slow lane | g5_r250tailq4 (graph inject at 250, tail by q4) | 66.3 |
 
 Runs 158-162: 158 P93 Med0; 159 Med10; 160 Med0; 161 Med10; 162 Med10. Lesson: touching ranks <200 or swapping many top-401 rows costs points; Medium rows at 350 neutral. 36 attempts left.
+| 163 | (unnamed: Run · 2026-10-24 16:25 BST / 15:25 UTC) | h2_med80r321 (e3 + Medium top 80 at rank 322) | 66.2 |
+| 164 | night owl | h2_med50r350 | 66.2 |
+| 165 | quarter past | h2_med30r250 | 66.2 |
+| 166 | kitchen sink | h2_g1r250tailq4 | 66.3 |
+| 167 | mid table | h2_med50r300 | 66.2 |
+
+Runs 163-167: 163 P94 Med0; 164 P93 Med0; 165 Med10; 166 Med10; 167 P93 Med0. Takeaway: more Medium-model rows lower precision and don't lift Medium. 32 attempts left. n-series (new-signal Hard-relay / unsupervised) starts at 168.
