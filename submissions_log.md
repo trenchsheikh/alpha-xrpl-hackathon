@@ -124,3 +124,8 @@ Note: Hard recall 0% on every insertion; insertions cost precision. ~131 attempt
 | 117 | self help | pl_200_03 | 63.7 |
 
 Runs 114-117: all prec 93-94%, top1% recall Easy 50% / Med,Hard,Amb 0%, AUC .90-.91. Pseudo-label self-training hurt vs q4 (66.1). 81 attempts left.
+| 118 | group hug | /workspace/crackit/rank_q4top2_best.csv (CrackiT cluster-consistency on q4) | 65.8 |
+| 119 | social butterfly | h_graph-inject40 (q4 order + top 40 of LightGBM base+graph-features (lkgraph/) outside q4 top 401, inserted at q4 rank 200) | 66.2 |
+| 120 | chatterbox | h_graph-rankavg (0.5 q4 rank + 0.5 graph-model rank) | pending |
+
+Run 119: prec 95%, top1% recall Easy 50% / Med 10% / Hard 0% / Amb 0%. **New best 66.2** (q4 = 66.1). Run 118 CrackiT cluster-consistency 65.8. 80 attempts left.
