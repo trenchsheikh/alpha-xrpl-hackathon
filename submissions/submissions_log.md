@@ -34,3 +34,4 @@
 | 30 | 13:33 | just vibes | rank avg of c2, c1, e_aggwide, e_hub | - | 65.1 | 94% | 30% |
 | 31 | 13:42 | pizza run | rank avg (c2,c1,e_aggwide,e_hub) + propagation | - | 65.5 | 94% | 30% |
 | 32 | 13:42 | one more try | e_hub classw + propagation | - | 65.0 | 95% | 31% |
+| 33 | 13:55 | trust the process | rank avg of g_aggwide-prop, g_rankavg-prop, g_c2-prop | - | **65.6** | 93% | 30% |
