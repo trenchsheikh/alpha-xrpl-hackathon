@@ -86,3 +86,9 @@ Note: Hard recall 0% on every insertion; insertions cost precision. ~131 attempt
 | 79 | group hug | r1_consensus | 66.0 |
 | 80 | sleepy panda | r5_harm | 66.1 |
 | 81 | big breakfast | r4_q4heavy | 66.1 |
+| 82 | window seat | u1 q4+mv-windows | 65.9 |
+| 83 | middle lane | u2 q4+medium-link | 65.9 |
+| 84 | three amigos | u3 q4+avg3prop | 66.0 |
+| 85 | fizzy pop | r6_q4y1 | 66.1 |
+| 86 | top dog | r7_q4h14max | 66.1 |
+| 87 | lucky seven | r8_q4y1_73 | 66.1 |
