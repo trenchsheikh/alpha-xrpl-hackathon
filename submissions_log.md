@@ -114,3 +114,7 @@ Note: Hard recall 0% on every insertion; insertions cost precision. ~131 attempt
 | 107 | maybe later | q4-0.5sd | 66.0 |
 | 108 | eccles cake | v5 | 66.1 |
 | 109 | bakewell | v6 | 66.0 |
+| 110 | wild guess | q4+0.5sd | 65.9 |
+| 111 | loose cannon | q4+1sd | 60.2 |
+| 112 | maverick | q4+2sd | 22.5 |
+| 113 | high five | 0.7q4+0.3max | 66.1 |
