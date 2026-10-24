@@ -130,3 +130,19 @@ Runs 114-117: all prec 93-94%, top1% recall Easy 50% / Med,Hard,Amb 0%, AUC .90-
 
 Run 119: prec 95%, top1% recall Easy 50% / Med 10% / Hard 0% / Amb 0%. **New best 66.2** (q4 = 66.1). Run 118 CrackiT cluster-consistency 65.8. 80 attempts left.
 Run 120: prec 93%, top1% E50 M10. Full rank-avg with graph model hurts on test (64.0); small injections preferred.
+| 121 | triple decker | h_graph3s-inject40 | 66.3 |
+| 122 | party bus | h_graph-inject60 | 66.0 |
+| 123 | late bloomer | h_graph-inject40r300 | 66.2 |
+| 124 | dark horse | crackit nov_inj40 | 64.4 |
+| 125 | conga line | h_graph-inject80 | 65.8 |
+| 126 | front row | h_graph-inject40r100 | 66.0 |
+| 127 | hail mary | crackit big_m18b40 | 62.9 |
+| 128 | needle hunt | i_hardnb-inject20 | 64.5 |
+| 129 | best of both | k_union | 66.3 |
+| 130 | lucky dip | j_cohort-inject20 | 64.5 |
+| 131 | pizza party | m_all300 | 66.1 |
+| 132 | pillow fight | m_all200 | 65.7 |
+| 133 | tea break (unnamed) | m_15r150 | 66.0 |
+| 134 | wild card (unnamed) | r_rand20 (20 random rows at rank 380) | 65.5 |
+
+Runs 121-134: prec / top1% E/M/H/A — 121 95% 50/0/0/0; 122 94% 50/10/0/0; 123 95% 50/10/0/0; 124 90% 40/0/0/0; 125 93% 50/10/0/0; 126 95% 50/10/0/0; 127 86% 40/0/0/0; 128 91% 40/0/0/0; 129 95% 50/0/0/0; 130 91% 40/0/0/0; 131 93% 50/10/0/0; 132 93% 50/10/0/0; 133 94% 50/10/0/0; 134 91% 40/0/0/0. **New best 66.3** (runs 121, 129). ~64 attempts left.
