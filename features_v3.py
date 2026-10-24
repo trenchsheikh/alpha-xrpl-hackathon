@@ -163,6 +163,38 @@ def features_from_edges_v3(edges):
     feat["prior_in_vs_next_out6h"] = (
         feat.prior_in_usd_21600 - feat.next_out_usd_21600)
 
+    # Medium-difficulty motifs are the same shapes as easy ones stretched over 1-3h.
+    # Symmetric multi-hour activity windows around each payment (label-free).
+    def _win_stats(groups, keys, W):
+        cnt=np.zeros(n); uniq=np.zeros(n); cv=np.zeros(n)
+        for address, ix in groups.items():
+            ix=np.sort(ix); tt=t[ix]; vv=value[ix]; other=keys[ix]
+            lo=np.searchsorted(tt, tt-W, side="left"); hi=np.searchsorted(tt, tt+W, side="right")
+            for j,(a,b) in enumerate(zip(lo,hi)):
+                seg=vv[a:b]; cnt[ix[j]]=b-a; uniq[ix[j]]=len(set(other[a:b]))
+                cv[ix[j]]=seg.std()/(seg.mean()+1e-9) if b-a>1 else 0
+        return cnt,uniq,cv
+    gout=d.groupby("FROM_ADDRESS",sort=False).indices; gin=d.groupby("TO_ADDRESS",sort=False).indices
+    for W in (1800, 7200, 14400):
+        for name,groups,keys,addr in (("s_outw",gout,dst,src),("r_inw",gin,src,dst)):
+            c,u,v=_win_stats(groups,keys,W)
+            feat[f"{name}_cnt_{W}"]=c; feat[f"{name}_uniq_{W}"]=u; feat[f"{name}_cv_{W}"]=v
+        # wallet-side windows: sender's inbound and receiver's outbound around this time
+        for name,hist,who in (("s_inw",ins,src),("r_outw",outs,dst)):
+            c=np.zeros(n)
+            for i in range(n):
+                h=hist.get(who[i])
+                if h is not None:
+                    c[i]=np.searchsorted(h[0],t[i]+W,side="right")-np.searchsorted(h[0],t[i]-W,side="left")
+            feat[f"{name}_cnt_{W}"]=c
+        feat[f"burst_share_{W}"]=(feat[f"s_outw_cnt_{W}"]+feat[f"r_inw_cnt_{W}"])/(1+feat.s_out_count+feat.r_in_count)
+    for W in (7200, 14400):
+        up=np.array([_best_batch(*ins.get(src[i],empty_hist), t[i], value[i], False, W, 64) for i in range(n)])
+        dn=np.array([_best_batch(*outs.get(dst[i],empty_hist), t[i], value[i], True, W, 64) for i in range(n)])
+        feat[f"upstream_best_match_{W}"]=up[:,0]; feat[f"downstream_best_match_{W}"]=dn[:,0]
+        feat[f"upstream_best_count_{W}"]=up[:,1]; feat[f"downstream_best_count_{W}"]=dn[:,1]
+        feat[f"bidirectional_batch_match_{W}"]=up[:,0]*dn[:,0]
+
     feat = feat.replace([np.inf, -np.inf], np.nan).fillna(0)
     assert feat.TRANSACTION_HASH.is_unique
     return feat
