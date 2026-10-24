@@ -104,3 +104,13 @@ Note: Hard recall 0% on every insertion; insertions cost precision. ~131 attempt
 | 97 | shortbread | w8 | 66.0 |
 | 98 | fig roll | w9 | 66.0 |
 | 99 | wafer | w10 | 66.1 |
+| 100 | crumpet | v1 | 66.0 |
+| 101 | scone | v2 | 66.0 |
+| 102 | teacake | v3 | 66.1 |
+| 103 | flapjack | v4 | 66.0 |
+| 104 | cold feet | q4-2sd disagreement penalty | 65.6 |
+| 105 | second opinion | mean-1sd | 65.7 |
+| 106 | fence sitter | q4-1sd | 65.9 |
+| 107 | maybe later | q4-0.5sd | 66.0 |
+| 108 | eccles cake | v5 | 66.1 |
+| 109 | bakewell | v6 | 66.0 |
