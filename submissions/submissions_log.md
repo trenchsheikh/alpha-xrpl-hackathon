@@ -41,3 +41,11 @@
 | 37 | 14:15 | hold my coffee | k4_blend: geo-mean ranks of aggwide-prop, rankavg-top-prop, c2-prop | - | 65.6 | - | - |
 
 Note: g_scenlink-prop rejected as duplicate of coffee run #3 (not submitted).
+| 38 | m1_blend (0.35 aggwide-prop+0.35 rankavg-top-prop+0.3 hub-prop) | snack attack | 65.8 |
+| 39 | m2_blend (+0.2 c2-prop) | rubber duck | 65.7 |
+| 40 | m3_blend (0.4/0.3/0.3) | second breakfast | 65.8 |
+| 41 | m4_blend (0.5 k1+0.5 k2) | it's not a bug, it's a feature | 65.8 |
+| 42 | g_scenlink2-prop (scen-link rebuilt with 29 lk_* cols + prop) | plot twist | 65.8 |
+| 43 | e_scenlink2-classw (no prop) | banana bread | 65.5 |
+| 44 | n1_blend (0.5 scenlink2-prop + 0.5 k2) | cheese toastie | 66.0 BEST |
+| 45 | n2_blend (0.7 scenlink2-prop + 0.3 k2) | nap time | 66.0 |
