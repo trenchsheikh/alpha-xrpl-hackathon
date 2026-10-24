@@ -67,7 +67,23 @@ def motif_features(d, extra=True):
         for c in cols: out[f'motif_{c}_{W}'+('m' if W==1800 else '')]=m.TRANSACTION_HASH.map(r[c]).values
     if extra:
         for W in (300,2700): out[f'motif_stack_{W}']=m.TRANSACTION_HASH.map(stack_score(m,W)).values
-    return pd.concat([m[['TRANSACTION_HASH']],pd.DataFrame(out)],axis=1)
+    base=pd.DataFrame(out); out.update(wallet_agg(m,base)); return pd.concat([m[['TRANSACTION_HASH']],pd.DataFrame(out)],axis=1)
+
+def wallet_agg(m,base):
+    ts=m.ts.values;N=len(m);V=base.values.astype(float);res={}
+    w=np.concatenate([m.src.values,m.dst.values]);ix=np.concatenate([np.arange(N),np.arange(N)])
+    groups=pd.Series(ix).groupby(w).indices
+    for W in (300,1800):
+        mx=np.zeros_like(V);sm=np.zeros_like(V);cn=np.zeros(N)
+        for k,g in groups.items():
+            g=np.unique(ix[g]);g=g[np.argsort(ts[g],kind='stable')];tt=ts[g]
+            lo=np.searchsorted(tt,tt-W);hi=np.searchsorted(tt,tt+W,'right')
+            for a,b,i in zip(lo,hi,g):
+                seg=V[g[a:b]];mx[i]=np.maximum(mx[i],seg.max(0));sm[i]+=seg.sum(0);cn[i]+=b-a
+        mean=sm/np.maximum(cn,1)[:,None]
+        for j,c in enumerate(base.columns):
+            res[f'{c}_wmax{W}']=mx[:,j];res[f'{c}_wmean{W}']=mean[:,j]
+    return res
 
 def cycle_len(m,W,lo,hi,minlen=3):
     """Cycle closure requiring >=minlen hops (2-hop back-and-forth is common in normal traffic)."""
