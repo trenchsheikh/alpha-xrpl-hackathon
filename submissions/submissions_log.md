@@ -49,3 +49,9 @@ Note: g_scenlink-prop rejected as duplicate of coffee run #3 (not submitted).
 | 43 | e_scenlink2-classw (no prop) | banana bread | 65.5 |
 | 44 | n1_blend (0.5 scenlink2-prop + 0.5 k2) | cheese toastie | 66.0 BEST |
 | 45 | n2_blend (0.7 scenlink2-prop + 0.3 k2) | nap time | 66.0 |
+| 46 | q1 (0.6 scenlink2-prop+0.4 k2) | pancake stack | 66.0 |
+| 47 | q2 (0.4 S+0.3 k2+0.3 h_avg3prop) | sunday roast | 65.9 |
+| 48 | q3 (0.5 S+0.2 aggwide+0.15 rankavg+0.15 hub) | biscuit tin | 66.0 |
+| 49 | q4 (0.4 S+0.1 e_scenlink2+0.5 k2) | fish and chips | 66.1 BEST |
+| 50 | p1_oofblend (XRPL max-of-ranks agg/hub/medium) | lemon drizzle | 64.3 |
+| 51 | r1 (p1 + prop) | spicy noodles | 64.5 |
