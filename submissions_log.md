@@ -146,3 +146,14 @@ Run 120: prec 93%, top1% E50 M10. Full rank-avg with graph model hurts on test (
 | 134 | wild card (unnamed) | r_rand20 (20 random rows at rank 380) | 65.5 |
 
 Runs 121-134: prec / top1% E/M/H/A — 121 95% 50/0/0/0; 122 94% 50/10/0/0; 123 95% 50/10/0/0; 124 90% 40/0/0/0; 125 93% 50/10/0/0; 126 95% 50/10/0/0; 127 86% 40/0/0/0; 128 91% 40/0/0/0; 129 95% 50/0/0/0; 130 91% 40/0/0/0; 131 93% 50/10/0/0; 132 93% 50/10/0/0; 133 94% 50/10/0/0; 134 91% 40/0/0/0. **New best 66.3** (runs 121, 129). ~64 attempts left.
+| 135 | night owl | s_relay40 (top 40 relay_match6h rows inserted at rank 300 of h_graph3s-inject40) | 64.2 |
+| 136 | deep clean | t_deep_ra (top401 of h_graph3s-inject40, rest by h_graph-rankavg) | 65.1 |
+| 137 | spring clean | t_deep_q4 (top401 of h_graph3s-inject40, rest by q4) | 66.3 |
+| 138 | photo finish | f_lb1 (consensus-reordered top401 from leaderboard mapping) | 62.3 |
+| 139 | final whistle | f_lb3 (top401 of h_graph3s-inject40, rest by mean rank of runs >=66.0) | 66.3 |
+| 140 | last orders (may show as Run) | g_deep1 (top401 h_graph3s, rest by h_graph-inject40) | 66.3 |
+| 141 | closing time | g_deep2 (top401 h_graph3s, rest by m_all300) | 66.2 |
+| 142 | second wind | n_med1 (top401 from h_graph-inject40, rest by q4) | 66.2 |
+| 143 | comeback kid | n_med2 (top401 from h_graph-inject40r300, rest by q4) | 66.2 |
+
+Runs 135-143: prec / top1% E/M/H/A — 135 87% 40/0/0/0; 136 95% 50/0/0/0; 137 95% 50/0/0/0; 138 95% 50/0/0/0; 139 95% 50/0/0/0; 140 95% 50/0/0/0; 141 95% 50/0/0/0; 142 95% 50/10/0/0; 143 95% 50/10/0/0. Best remains 66.3. ~55 attempts left.
