@@ -22,7 +22,7 @@ from train_v3 import group_split
 
 FOLDS = (42, 137)
 NAMES = ("v3_cat", "v3_lgb", "flow_cat", "flow_lgb")
-BASE_END = "relay_amount_matching"
+BASE_END = "prior_in_vs_next_out6h"
 
 
 def build(dataset_dir):
