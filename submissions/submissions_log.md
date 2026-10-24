@@ -170,3 +170,10 @@ Runs 144-147: prec / top1% E/M/H/A — 144 94% 50/0/0/0; 145 94% 50/10/0/0; 146 
 | 152 | top shelf | e2_top100lock | 66.3 |
 
 Runs 148-152: 148 P95% 50/0/0/0; 149 50/10/0/0 (best so far that keeps Medium; new base). Best still 66.3. 47 attempts left.
+| 153 | slow burn | f2_k40r250 (e3 graph inject at rank 250) | 66.3 |
+| 154 | ten pin | f3_graph10s (10-seed graph model, top 40 at rank 200) | 66.3 |
+| 155 | late show | f4_med10r390 (e3 + Medium-only top 10 at rank 390) | 66.3 |
+| 156 | dirty thirty | f1_k30r250 (graph K=30 at rank 250) | 66.2 |
+| 157 | tail wind | f5_tailq4 (e3 top 401, rest by q4) | 66.3 |
+
+Runs 153-157: Med top1% — 153 10; 154 10; 155 0; 156 0; 157 10. Everything stuck at 66.3. 41 attempts left.
