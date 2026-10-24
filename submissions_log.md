@@ -92,3 +92,4 @@ Note: Hard recall 0% on every insertion; insertions cost precision. ~131 attempt
 | 85 | fizzy pop | r6_q4y1 | 66.1 |
 | 86 | top dog | r7_q4h14max | 66.1 |
 | 87 | lucky seven | r8_q4y1_73 | 66.1 |
+| 88 | hail mary | q4 max 0.995*hard_v9 (CrackiT, Sami-approved) | 49.9, Hard 0% |
