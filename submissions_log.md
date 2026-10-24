@@ -157,3 +157,9 @@ Runs 121-134: prec / top1% E/M/H/A — 121 95% 50/0/0/0; 122 94% 50/10/0/0; 123 
 | 143 | comeback kid | n_med2 (top401 from h_graph-inject40r300, rest by q4) | 66.2 |
 
 Runs 135-143: prec / top1% E/M/H/A — 135 87% 40/0/0/0; 136 95% 50/0/0/0; 137 95% 50/0/0/0; 138 95% 50/0/0/0; 139 95% 50/0/0/0; 140 95% 50/0/0/0; 141 95% 50/0/0/0; 142 95% 50/10/0/0; 143 95% 50/10/0/0. Best remains 66.3. ~55 attempts left.
+| 144 | buzzer beater | h_graph-inject30 | 66.2 |
+| 145 | extra time | o_inj40 (5-seed combined LightGBM on motif+graph+cohort+medium-windows, top 40 inserted at rank 200 of h_graph3s-inject40) | 66.1 |
+| 146 | penalty shootout | o_tail (top 401 of h_graph3s-inject40, rest by combined model) | 63.5 |
+| 147 | long shot | p_relay20 (relay-family two-stage Hard probe, 20 rows at rank 380) | 65.3 |
+
+Runs 144-147: prec / top1% E/M/H/A — 144 94% 50/0/0/0; 145 94% 50/10/0/0; 146 95% 50/0/0/0; 147 91% 40/0/0/0. Best still 66.3. 52 attempts left.
