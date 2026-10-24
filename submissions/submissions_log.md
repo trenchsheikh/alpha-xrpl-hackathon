@@ -35,3 +35,9 @@
 | 31 | 13:42 | pizza run | rank avg (c2,c1,e_aggwide,e_hub) + propagation | - | 65.5 | 94% | 30% |
 | 32 | 13:42 | one more try | e_hub classw + propagation | - | 65.0 | 95% | 31% |
 | 33 | 13:55 | trust the process | rank avg of g_aggwide-prop, g_rankavg-prop, g_c2-prop | - | **65.6** | 93% | 30% |
+| 34 | 14:15 | (name not saved) | k1_blend: 0.5 g_aggwide-prop + 0.5 g_f_rankavg-top-prop | - | 65.7 | - | - |
+| 35 | 14:15 | tea break | k2_blend: 0.4 aggwide-prop + 0.4 rankavg-top-prop + 0.2 g_e_hub-classw-prop | - | **65.8** BEST | - | - |
+| 36 | 14:15 | lucky socks | k3_blend: 0.7 h_avg3prop + 0.3 aggwide-prop | - | 65.6 | - | - |
+| 37 | 14:15 | hold my coffee | k4_blend: geo-mean ranks of aggwide-prop, rankavg-top-prop, c2-prop | - | 65.6 | - | - |
+
+Note: g_scenlink-prop rejected as duplicate of coffee run #3 (not submitted).
