@@ -1,6 +1,6 @@
 import pandas as pd,numpy as np,collections,bisect
 from sklearn.metrics import average_precision_score as AP
-def detect(m,W,lo=0.4,hi=1.05):
+def detect(m,W,lo=0.4,hi=1.05,samecur=False):
     m=m.sort_values('ts').reset_index(drop=True)
     ts=m.ts.values.astype(float);s=m.src.values;d=m.dst.values;u=m.u.values.astype(float);sym=m.sym.values
     N=len(m);ok=s!=d
@@ -19,7 +19,7 @@ def detect(m,W,lo=0.4,hi=1.05):
         if not ok[i]:continue
         for j in W_(out_by,ot,d[i],ts[i]+1e-9,ts[i]+W):
             r=u[j]/max(u[i],1e-9)
-            if lo<=r<=hi and d[j]!=s[i] or (lo<=r<=hi and d[j]==s[i]): nxt[i].append(j)
+            if lo<=r<=hi and (not samecur or sym[j]==sym[i]): nxt[i].append(j)
     # chain length forward/back
     fw=np.ones(N);bw=np.ones(N)
     for i in range(N-1,-1,-1):
@@ -58,13 +58,16 @@ def detect(m,W,lo=0.4,hi=1.05):
 def motif_features(d, extra=True):
     """Label-free exact-motif detectors on (TRANSACTION_HASH,TIMESTAMP,FROM,TO,VALUE=USD)."""
     m=pd.DataFrame(dict(TRANSACTION_HASH=d.TRANSACTION_HASH.values,ts=d.TIMESTAMP.values.astype(float),
-        src=d.FROM_ADDRESS.astype(str).values,dst=d.TO_ADDRESS.astype(str).values,u=d.VALUE.values.astype(float),sym=0))
+        src=d.FROM_ADDRESS.astype(str).values,dst=d.TO_ADDRESS.astype(str).values,u=d.VALUE.values.astype(float),sym=d.ASSET.astype(str).values if 'ASSET' in d else 0))
     out={}
     specs=[(300,0.75,1.2,['chain','fin','fout','foi','cyc']),(900,0.75,1.2,['foi','chain']),(2700,0.75,1.2,['chain','foi'])]
     if extra: specs.append((1800,0.8,1.15,['chain','foi']))
     for W,lo,hi,cols in specs:
         r=detect(m,W,lo,hi).set_index('TRANSACTION_HASH')
         for c in cols: out[f'motif_{c}_{W}'+('m' if W==1800 else '')]=m.TRANSACTION_HASH.map(r[c]).values
+    for W,lo,hi in ((300,0.75,1.2),(1800,0.8,1.15)):
+        r=detect(m,W,lo,hi,samecur=True).set_index('TRANSACTION_HASH')
+        for c in ('chain','foi'): out[f'motif_{c}_{W}_samecur']=m.TRANSACTION_HASH.map(r[c]).values
     if extra:
         for W in (300,2700): out[f'motif_stack_{W}']=m.TRANSACTION_HASH.map(stack_score(m,W)).values
     return pd.concat([m[['TRANSACTION_HASH']],pd.DataFrame(out)],axis=1)
