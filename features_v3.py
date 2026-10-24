@@ -198,6 +198,9 @@ def features_from_edges_v3(edges):
     from motif_search import motif_features, MOTIF_EXTRA
     mf=motif_features(d, extra=MOTIF_EXTRA)
     for c in mf.columns[1:]: feat[c]=mf[c].to_numpy()
+    from medium_link import medium_link_features
+    ml=medium_link_features(d)
+    for c in ml.columns: feat[c]=ml[c].to_numpy()
     feat = feat.replace([np.inf, -np.inf], np.nan).fillna(0)
     assert feat.TRANSACTION_HASH.is_unique
     return feat
