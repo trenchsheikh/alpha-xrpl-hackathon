@@ -79,3 +79,10 @@ Note: Hard recall 0% on every insertion; insertions cost precision. ~131 attempt
 | 72 | long shot | z1 hard model only (diagnostic) | 3.9, Hard 0% |
 | 73 | cup of tea | x4_medonly | 66.0 |
 | 74 | wild card | z2 medium model only (diagnostic) | 7.3, Med 10% |
+| 75 | golden hour | t1 geo-mean top5 | 66.0 |
+| 76 | slow cooker | t2 min-rank top5 | stuck processing |
+| 77 | middle child | t3 median top5 | 66.0 |
+| 78 | grumpy cat | r2_consmin | 66.0 |
+| 79 | group hug | r1_consensus | 66.0 |
+| 80 | sleepy panda | r5_harm | 66.1 |
+| 81 | big breakfast | r4_q4heavy | 66.1 |
