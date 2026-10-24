@@ -1,4 +1,4 @@
-name: SENTINEL V2 smoke
+name: SENTINEL V3 checks
 on:
   push:
     branches: [main]
@@ -11,9 +11,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Install test dependencies
-        run: python -m pip install numpy pandas scikit-learn catboost
-      - name: Compile Python scripts
-        run: python -m py_compile train.py train_v2.py payments.py tests/test_v2_smoke.py
+      - name: Install feature and ML libraries
+        run: python -m pip install numpy pandas scipy scikit-learn catboost lightgbm networkx
+      - name: Compile V1 V2 and V3
+        run: python -m py_compile train.py train_v2.py train_v3.py features_v3.py payments.py scripts/package_v3.py tests/test_v2_smoke.py tests/test_v3_smoke.py
       - name: Smoke test V2 graph features
         run: python tests/test_v2_smoke.py
+      - name: Smoke test V3 graph and ensemble
+        run: python tests/test_v3_smoke.py
