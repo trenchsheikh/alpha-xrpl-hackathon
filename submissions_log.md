@@ -72,3 +72,6 @@ Note: g_scenlink-prop rejected as duplicate of coffee run #3 (not submitted).
 | 66 | coin flip | h02 | 60.1 |
 | 67 | merry-go-round | h08 | 60.7 |
 Note: Hard recall 0% on every insertion; insertions cost precision. ~131 attempts left.
+| 68 | duck soup | x1_experts | 66.0 |
+| 69 | jam sandwich | x2_experts | 65.8 |
+| 70 | party hat | x3_experts | 50.2 |
