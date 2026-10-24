@@ -34,9 +34,8 @@ def _best_batch(times, amounts, now, target, forward, window, cap=32):
     return float(match[k]), float(k + 1), float(delays[k]), float(cumulative[-1] / (1.0 + target))
 
 
-def build_features_v3(folder):
-    from payments import load_payments
-    d = pd.DataFrame(load_payments(folder))
+def features_from_edges_v3(edges):
+    d = pd.DataFrame(edges).copy()
     d = d.sort_values(["TIMESTAMP", "TRANSACTION_HASH"]).reset_index(drop=True)
     feat = features_from_edges(d)
     assert np.array_equal(feat.TRANSACTION_HASH.to_numpy(), d.TRANSACTION_HASH.to_numpy())
@@ -167,3 +166,8 @@ def build_features_v3(folder):
     feat = feat.replace([np.inf, -np.inf], np.nan).fillna(0)
     assert feat.TRANSACTION_HASH.is_unique
     return feat
+
+
+def build_features_v3(folder):
+    from payments import load_payments
+    return features_from_edges_v3(load_payments(folder))
