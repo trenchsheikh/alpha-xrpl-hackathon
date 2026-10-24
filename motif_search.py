@@ -69,20 +69,32 @@ def motif_features(d, extra=True):
         for W in (300,2700): out[f'motif_stack_{W}']=m.TRANSACTION_HASH.map(stack_score(m,W)).values
     base=pd.DataFrame(out); out.update(wallet_agg(m,base)); return pd.concat([m[['TRANSACTION_HASH']],pd.DataFrame(out)],axis=1)
 
-def wallet_agg(m,base):
+def wallet_agg(m,base,windows=(300,1800,3600,7200),hop2=1800,counts=True):
     ts=m.ts.values;N=len(m);V=base.values.astype(float);res={}
     w=np.concatenate([m.src.values,m.dst.values]);ix=np.concatenate([np.arange(N),np.arange(N)])
-    groups=pd.Series(ix).groupby(w).indices
-    for W in (300,1800):
+    groups=[np.unique(g) for g in pd.Series(ix).groupby(w).indices.values()]
+    groups=[ix[g] for g in groups];groups=[g[np.argsort(ts[g],kind='stable')] for g in (np.unique(g) for g in groups)]
+    def agg(V,W):
         mx=np.zeros_like(V);sm=np.zeros_like(V);cn=np.zeros(N)
-        for k,g in groups.items():
-            g=np.unique(ix[g]);g=g[np.argsort(ts[g],kind='stable')];tt=ts[g]
-            lo=np.searchsorted(tt,tt-W);hi=np.searchsorted(tt,tt+W,'right')
+        for g in groups:
+            tt=ts[g];lo=np.searchsorted(tt,tt-W);hi=np.searchsorted(tt,tt+W,'right')
             for a,b,i in zip(lo,hi,g):
                 seg=V[g[a:b]];mx[i]=np.maximum(mx[i],seg.max(0));sm[i]+=seg.sum(0);cn[i]+=b-a
-        mean=sm/np.maximum(cn,1)[:,None]
+        return mx,sm/np.maximum(cn,1)[:,None],cn
+    keep={}
+    for W in windows:
+        mx,mean,cn=agg(V,W);keep[W]=(mx,mean,cn)
         for j,c in enumerate(base.columns):
             res[f'{c}_wmax{W}']=mx[:,j];res[f'{c}_wmean{W}']=mean[:,j]
+        if counts: res[f'wlink_cnt{W}']=cn
+    if hop2:
+        mx1,mean1,cn1=keep[hop2] if hop2 in keep else agg(V,hop2)
+        # 2-hop: aggregate the 1-hop aggregates again over wallet-linked txs (via a shared counterparty)
+        mx2,_,_=agg(mx1,hop2);_,mean2,_=agg(mean1,hop2);_,_,_c=None,None,None
+        c2=agg(cn1[:,None],hop2)[1][:,0]
+        for j,c in enumerate(base.columns):
+            res[f'{c}_h2max{hop2}']=mx2[:,j];res[f'{c}_h2mean{hop2}']=mean2[:,j]
+        if counts: res[f'wlink_h2cnt{hop2}']=c2*cn1
     return res
 
 def cycle_len(m,W,lo,hi,minlen=3):
