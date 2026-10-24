@@ -90,4 +90,4 @@ def stack_score(m,W):
         good={k:v for k,v in cnt.items() if len(v)>=2}
         if len(good)>=2 and d[i] in good.get(s[i],()): sc[i]=sum(len(v) for v in good.values())
     return pd.Series(sc,index=m.TRANSACTION_HASH.values)
-MOTIF_EXTRA=False
+MOTIF_EXTRA = True
