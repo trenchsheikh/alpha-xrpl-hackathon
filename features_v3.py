@@ -195,6 +195,9 @@ def features_from_edges_v3(edges):
         feat[f"upstream_best_count_{W}"]=up[:,1]; feat[f"downstream_best_count_{W}"]=dn[:,1]
         feat[f"bidirectional_batch_match_{W}"]=up[:,0]*dn[:,0]
 
+    from motif_search import motif_features
+    mf=motif_features(d)
+    for c in mf.columns[1:]: feat[c]=mf[c].to_numpy()
     feat = feat.replace([np.inf, -np.inf], np.nan).fillna(0)
     assert feat.TRANSACTION_HASH.is_unique
     return feat
