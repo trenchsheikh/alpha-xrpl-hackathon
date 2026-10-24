@@ -98,3 +98,9 @@ Note: Hard recall 0% on every insertion; insertions cost precision. ~131 attempt
 | 91 | custard cream | w2 | 66.0 |
 | 92 | bourbon | w3 | 66.0 |
 | 93 | hobnob | w4 | 66.1 |
+| 94 | digestive | w5 | 66.1 |
+| 95 | rich tea | w6 | 65.9 |
+| 96 | ginger nut | w7 | 66.0 |
+| 97 | shortbread | w8 | 66.0 |
+| 98 | fig roll | w9 | 66.0 |
+| 99 | wafer | w10 | 66.1 |
