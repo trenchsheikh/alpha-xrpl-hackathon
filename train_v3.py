@@ -53,7 +53,7 @@ def make_cat(branch, iters=1150, seed=42):
 def make_light(branch, iters=1100, seed=42):
     expert = branch == "expert"
     return lgb.LGBMClassifier(
-        n_estimators=iters, objective="binary",
+        n_estimators=iters, objective="binary", metric="average_precision",
         num_leaves=15 if expert else 23,
         learning_rate=.045, max_depth=-1,
         min_child_samples=65 if expert else 85,
@@ -111,7 +111,6 @@ def train_branches(features, labels, base_columns, tr, va=None, seed=42, iterati
         else:
             fit_args = {
                 "eval_set": [(matrix.iloc[va], y.iloc[va])],
-                "eval_metric": "average_precision",
                 "callbacks": [lgb.early_stopping(75, first_metric_only=True, verbose=False)],
             } if va is not None else {}
             model.fit(matrix.iloc[tr], y.iloc[tr], **weight_args, **fit_args)
