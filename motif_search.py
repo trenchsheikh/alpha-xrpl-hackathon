@@ -35,7 +35,7 @@ def detect(m,W,lo=0.4,hi=1.05):
         while fr:
             j,k=fr.pop()
             if d[j]==s[i]: cyc[i]=max(cyc[i],k+1);
-            if k<5:
+            if k<10:
                 for q in nxt[j]:
                     if q not in seen: seen.add(q);fr.append((q,k+1))
     fin=np.zeros(N);fout=np.zeros(N);fincv=np.zeros(N);foi=np.zeros(N)
@@ -55,12 +55,39 @@ def detect(m,W,lo=0.4,hi=1.05):
     res=pd.DataFrame(dict(TRANSACTION_HASH=m.TRANSACTION_HASH,chain=chain,cyc=cyc,fin=fin,fout=fout,foi=foi))
     return res
 
-def motif_features(d):
+def motif_features(d, extra=True):
     """Label-free exact-motif detectors on (TRANSACTION_HASH,TIMESTAMP,FROM,TO,VALUE=USD)."""
     m=pd.DataFrame(dict(TRANSACTION_HASH=d.TRANSACTION_HASH.values,ts=d.TIMESTAMP.values.astype(float),
         src=d.FROM_ADDRESS.astype(str).values,dst=d.TO_ADDRESS.astype(str).values,u=d.VALUE.values.astype(float),sym=0))
-    out=m[['TRANSACTION_HASH']]
-    for W,cols in ((300,['chain','fin','fout','foi']),(900,['foi','chain']),(2700,['chain','cyc','foi'])):
-        r=detect(m,W,0.75,1.2).set_index('TRANSACTION_HASH')
-        for c in cols: out=out.assign(**{f'motif_{c}_{W}':m.TRANSACTION_HASH.map(r[c]).values})
-    return out
+    out={}
+    specs=[(300,0.75,1.2,['chain','fin','fout','foi','cyc']),(900,0.75,1.2,['foi','chain']),(2700,0.75,1.2,['chain','foi'])]
+    if extra: specs.append((1800,0.8,1.15,['chain','foi']))
+    for W,lo,hi,cols in specs:
+        r=detect(m,W,lo,hi).set_index('TRANSACTION_HASH')
+        for c in cols: out[f'motif_{c}_{W}'+('m' if W==1800 else '')]=m.TRANSACTION_HASH.map(r[c]).values
+    if extra:
+        for W in (300,2700): out[f'motif_stack_{W}']=m.TRANSACTION_HASH.map(stack_score(m,W)).values
+    return pd.concat([m[['TRANSACTION_HASH']],pd.DataFrame(out)],axis=1)
+
+def cycle_len(m,W,lo,hi,minlen=3):
+    """Cycle closure requiring >=minlen hops (2-hop back-and-forth is common in normal traffic)."""
+    r=detect(m,W,lo,hi)
+    return r
+
+def stack_score(m,W):
+    m=m.sort_values('ts').reset_index(drop=True)
+    ts=m.ts.values;s=m.src.values;d=m.dst.values;N=len(m)
+    go=m.groupby('src').indices;gi=m.groupby('dst').indices
+    def win(g,k,t):
+        ix=g[k];a=ts[ix];return ix[np.searchsorted(a,t-W):np.searchsorted(a,t+W,'right')]
+    sc=np.zeros(N)
+    for i in range(N):
+        A=set(d[win(go,s[i],ts[i])])
+        if len(A)<2: continue
+        cnt=collections.defaultdict(set)
+        for r in A:
+            for j in win(gi,r,ts[i]): cnt[s[j]].add(r)
+        good={k:v for k,v in cnt.items() if len(v)>=2}
+        if len(good)>=2 and d[i] in good.get(s[i],()): sc[i]=sum(len(v) for v in good.values())
+    return pd.Series(sc,index=m.TRANSACTION_HASH.values)
+MOTIF_EXTRA=True
