@@ -60,8 +60,8 @@ def motif_features(d, extra=True):
     m=pd.DataFrame(dict(TRANSACTION_HASH=d.TRANSACTION_HASH.values,ts=d.TIMESTAMP.values.astype(float),
         src=d.FROM_ADDRESS.astype(str).values,dst=d.TO_ADDRESS.astype(str).values,u=d.VALUE.values.astype(float),sym=0))
     out={}
-    specs=[(300,0.75,1.2,['chain','fin','fout','foi','cyc']),(900,0.75,1.2,['foi','chain']),(2700,0.75,1.2,['chain','foi'])]
-    if extra: specs.append((1800,0.8,1.15,['chain','foi']))
+    specs=[(300,0.85,1.12,['chain','fin','fout','foi','cyc']),(900,0.85,1.12,['foi','chain']),(2700,0.85,1.12,['chain','foi'])]
+    if extra: specs.append((1800,0.85,1.12,['chain','foi']))
     for W,lo,hi,cols in specs:
         r=detect(m,W,lo,hi).set_index('TRANSACTION_HASH')
         for c in cols: out[f'motif_{c}_{W}'+('m' if W==1800 else '')]=m.TRANSACTION_HASH.map(r[c]).values
