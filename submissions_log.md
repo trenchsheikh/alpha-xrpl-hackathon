@@ -118,3 +118,9 @@ Note: Hard recall 0% on every insertion; insertions cost precision. ~131 attempt
 | 111 | loose cannon | q4+1sd | 60.2 |
 | 112 | maverick | q4+2sd | 22.5 |
 | 113 | high five | 0.7q4+0.3max | 66.1 |
+| 114 | mirror mirror | pl_300_05 (pseudo-label self-train) | 61.4 |
+| 115 | echo chamber | pl_300_03 | 63.7 |
+| 116 | bootstraps | pl_500_03 | 65.4 |
+| 117 | self help | pl_200_03 | 63.7 |
+
+Runs 114-117: all prec 93-94%, top1% recall Easy 50% / Med,Hard,Amb 0%, AUC .90-.91. Pseudo-label self-training hurt vs q4 (66.1). 81 attempts left.
