@@ -12,12 +12,14 @@ jobs:
         with:
           python-version: '3.11'
       - name: Install feature and ML libraries
-        run: python -m pip install numpy pandas scipy scikit-learn catboost lightgbm networkx
+        run: python -m pip install numpy pandas scipy scikit-learn catboost lightgbm networkx plotly
       - name: Compile V1 V2 and V3
-        run: python -m py_compile train.py train_v2.py train_v3.py features_v3.py payments.py scripts/package_v3.py scripts/hard_case_audit.py tests/test_v2_smoke.py tests/test_v3_smoke.py tests/test_v3_train.py
+        run: python -m py_compile train.py train_v2.py train_v3.py train_v31.py features_v3.py flow_v31.py bubble_map_v31.py payments.py scripts/package_v3.py scripts/hard_case_audit.py tests/test_v2_smoke.py tests/test_v3_smoke.py tests/test_v3_train.py tests/test_v31_smoke.py
       - name: Smoke test V2 graph features
         run: python tests/test_v2_smoke.py
       - name: Smoke test V3 graph and ensemble
         run: python tests/test_v3_smoke.py
       - name: Train V3 CatBoost and LightGBM on synthetic data
         run: python tests/test_v3_train.py
+      - name: Test V3.1 economic flow graph
+        run: python tests/test_v31_smoke.py
