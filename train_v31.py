@@ -30,6 +30,9 @@ def build(dataset_dir):
     raw = raw.sort_values(["TIMESTAMP", "TRANSACTION_HASH"]).reset_index(drop=True)
     f = features_from_edges_v3(raw)
     f, nxt, prv = add_flow_features(raw, f)
+    from scen_link import link_features
+    lk = link_features(raw, f, dataset_dir)
+    for c in lk.columns: f[c] = lk[c].to_numpy()
     assert f.TRANSACTION_HASH.is_unique
     return f, nxt, prv
 

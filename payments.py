@@ -20,7 +20,7 @@ def project(transactions,rates):
   fields=json.loads(tx["EXTRA_TRANSACTION_FIELDS"])
   asset,units=decode_amount(json.loads(tx["DELIVERED_AMOUNT"]))
   usd=units*rates[(int(tx["TIMESTAMP"])//3600*3600,asset)]/(SCALE*SCALE)
-  rows.append({"TRANSACTION_HASH":tx["TRANSACTION_HASH"],"TIMESTAMP":tx["TIMESTAMP"],"FROM_ADDRESS":tx["ACCOUNT"],"TO_ADDRESS":fields["Destination"],"VALUE":usd})
+  rows.append({"TRANSACTION_HASH":tx["TRANSACTION_HASH"],"TIMESTAMP":tx["TIMESTAMP"],"FROM_ADDRESS":tx["ACCOUNT"],"TO_ADDRESS":fields["Destination"],"VALUE":usd,"ASSET":asset})
  return rows
 
 def load_payments(directory):
