@@ -77,3 +77,5 @@ Note: Hard recall 0% on every insertion; insertions cost precision. ~131 attempt
 | 70 | party hat | x3_experts | 50.2 |
 | 71 | toast soldiers | y1 rank avg h14+x1 | 66.1 |
 | 72 | long shot | z1 hard model only (diagnostic) | 3.9, Hard 0% |
+| 73 | cup of tea | x4_medonly | 66.0 |
+| 74 | wild card | z2 medium model only (diagnostic) | 7.3, Med 10% |
