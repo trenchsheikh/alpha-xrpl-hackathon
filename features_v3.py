@@ -99,6 +99,7 @@ def build_features_v3(folder):
     graph = nx.DiGraph()
     graph.add_edges_from(zip(src, dst))
     undirected = graph.to_undirected()
+    undirected.remove_edges_from(nx.selfloop_edges(undirected))
     core = nx.core_number(undirected)
     weak_size = {}
     for component in nx.weakly_connected_components(graph):
