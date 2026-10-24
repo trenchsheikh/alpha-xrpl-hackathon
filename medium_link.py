@@ -60,4 +60,6 @@ def medium_link_features(d):
     for g0, g1 in ((300, 2400), (600, 3600)):
         for kk, v in comp_feats(m, g0=g0, g1=g1).items(): out[f'mlink_{kk}_{g0}_{g1}'] = v
     for kk, v in slow_rhythm(m).items(): out[f'slowrhythm_{kk}'] = v
+    from motif_search import wallet_agg
+    base = pd.DataFrame(out); out.update(wallet_agg(m, base))
     return pd.DataFrame(out)
