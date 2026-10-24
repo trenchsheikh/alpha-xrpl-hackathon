@@ -75,3 +75,4 @@ Note: Hard recall 0% on every insertion; insertions cost precision. ~131 attempt
 | 68 | duck soup | x1_experts | 66.0 |
 | 69 | jam sandwich | x2_experts | 65.8 |
 | 70 | party hat | x3_experts | 50.2 |
+| 71 | toast soldiers | y1 rank avg h14+x1 | 66.1 |
