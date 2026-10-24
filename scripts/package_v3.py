@@ -10,7 +10,7 @@ FILES = [
     "payments.py", "train.py", "train_v2.py", "train_v3.py",
     "features_v3.py", "requirements.txt",
     "scripts/organize_uploads.py", "scripts/package_v3.py",
-    "tests/test_v2_smoke.py", "tests/test_v3_smoke.py",
+    "tests/test_v2_smoke.py", "tests/test_v3_smoke.py", "tests/test_v3_train.py",
 ]
 OPTIONAL = ["predictions_v3.report.json"]
 
