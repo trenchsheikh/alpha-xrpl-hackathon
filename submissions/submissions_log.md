@@ -177,3 +177,10 @@ Runs 148-152: 148 P95% 50/0/0/0; 149 50/10/0/0 (best so far that keeps Medium; n
 | 157 | tail wind | f5_tailq4 (e3 top 401, rest by q4) | 66.3 |
 
 Runs 153-157: Med top1% — 153 10; 154 10; 155 0; 156 0; 157 10. Everything stuck at 66.3. 41 attempts left.
+| 158 | fresh legs | g3_graphfill350 (graph next-best fill ranks 351-401) | 66.1 |
+| 159 | middle child | g1_med30r350 (e3 + Medium top 30 at rank 350) | 66.3 |
+| 160 | bench press | g4_med20swap (e3 bottom 20 swapped for Medium top 20) | 66.3 |
+| 161 | front row | g2_graph40r100 (graph inject at rank 100) | 66.1 |
+| 162 | slow lane | g5_r250tailq4 (graph inject at 250, tail by q4) | 66.3 |
+
+Runs 158-162: 158 P93 Med0; 159 Med10; 160 Med0; 161 Med10; 162 Med10. Lesson: touching ranks <200 or swapping many top-401 rows costs points; Medium rows at 350 neutral. 36 attempts left.
